@@ -1,20 +1,42 @@
-document.addEventListener('DOMContentLoaded', init, false);
+'use strict';
 
-function init() {
-  console.log('init!')
+var TheyWork = function() {
+  this.parties = [];
+  this.partyData = [];
+};
 
-  getData();
+TheyWork.prototype.init = function() {
+  console.log('init!');
+  console.log('parties: ', this.parties);
+
+  this.partyData = this._getData();
+  this._setUpPartyOption();
+
+  // console.log('data: ', this.data);
+
+  /*
+  .then(function() {
+    console.log('promise!');
+  });
+  */
   // drawData();
 }
 
-function getData() {
-  console.log('getData!');
+TheyWork.prototype._setUpPartyOption = function() {
+  console.log('_setUpPartyOption!');
+  console.log(TheyWork.response);
+
+  document.getElementById('showParties').addEventListener('click', this._showParties, false);
+}
+
+TheyWork.prototype._getData = function() {
+  console.log('_getData!');
+
+  var self = this;
 
   // var key = 'AvizXSBnS6eXAP8bu7EvtKpk';
   // var url = 'https://www.theyworkforyou.com/api/getMPs?key=' + key;
   var url = 'http://127.0.0.1/DLT_DataVis_They-work/src/getMPs_response.json';
-
-  // app.constituencies = [];
 
   $.ajax({
     // dataType: 'jsonp',
@@ -23,20 +45,11 @@ function getData() {
       console.log('success!');
       console.log('response: ', response);
 
-      /*
-      for (var prop in response) {
-        // console.log('response.' + prop + ' = ' + response[prop]);
-        app.constituencies.push(response[prop]);
-      }
+      // self._setUpPartyOption();
 
-      // console.log('constituencies: ', app.constituencies);
-      */
+      // self.partyData = self._getData();
 
-      /*
-      response.forEach(function(constituency) {
-        app.constituencies.push(constituency.name.toLowerCase());
-      });
-      */
+      return response;
     },
     error: function(jqXHR, textStatus, errorThrown) {
       console.log('error!');
@@ -45,6 +58,36 @@ function getData() {
       console.log('errorThrown: ', errorThrown);
     }
   });
+}
+
+/*
+TheyWork.prototype._setUpPartyOption = function() {
+  console.log('_setUpPartyOption!');
+
+  var partyOption = '<a href="#" id="showParties">show parties</a>';
+
+  $('body').append(partyOption);
+
+  document.getElementById('showParties').addEventListener('click', this._showParties, false);
+}
+*/
+
+TheyWork.prototype._showParties = function() {
+  console.log('_showParties!');
+  console.log('data: ', this.partyData);
+
+  for (var prop in this.data) {
+    console.log('data.' + prop + ' = ' + data[prop]);
+    // app.constituencies.push(response[prop]);
+  }
+
+  // console.log('constituencies: ', app.constituencies);
+
+  /*
+  response.forEach(function(constituency) {
+    app.constituencies.push(constituency.name.toLowerCase());
+  });
+  */
 }
 
 function drawData() {
