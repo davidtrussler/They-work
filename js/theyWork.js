@@ -73,7 +73,7 @@ TheyWork.prototype._parseData = function(response) {
 TheyWork.prototype._drawData = function() {
   var dataset = this.parties;
   var w = 500;
-  var h = 100;
+  var h = 350;
   var barPadding = 1;
   var svg = d3
               .select('body')
@@ -96,8 +96,11 @@ TheyWork.prototype._drawData = function() {
     .attr('height', function(d) {
       return d.count;
     })
-    .attr('fill', function(d) {
-      return "rgb(0, 0, " + d * 5 + ")";
+    .attr('class', function(d) {
+      return d.name
+              .toLowerCase()
+              .split(' ')
+              .join('');
     });
 
   svg
