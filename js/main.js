@@ -1,6 +1,6 @@
-// $(document).ready(function() {
 document.addEventListener('DOMContentLoaded', function() {
-  var theyWork = new TheyWork();
-
-  theyWork.init();
+  if ($('body').hasClass('stateOfParties')) {
+    var stateOfParties = new StateOfParties();
+    stateOfParties.init();
+  }
 }, false);

@@ -4,23 +4,23 @@
 
 'use strict';
 
-var TheyWork = function() {
+var StateOfParties = function() {
   this.parties = [];
 };
 
-TheyWork.prototype.init = function() {
+StateOfParties.prototype.init = function() {
   console.log('init!');
 
   this._getData();
 }
 
-TheyWork.prototype._getData = function() {
+StateOfParties.prototype._getData = function() {
   console.log('_getData!');
 
   var self = this;
 
   // var key = 'AvizXSBnS6eXAP8bu7EvtKpk';
-  // var url = 'https://www.theyworkforyou.com/api/getMPs?key=' + key;
+  // var url = 'https://www.StateOfPartiesforyou.com/api/getMPs?key=' + key;
   var url = 'http://127.0.0.1/DLT_DataVis_They-work/src/getMPs_response.json';
 
   $.ajax({
@@ -39,7 +39,7 @@ TheyWork.prototype._getData = function() {
   });
 }
 
-TheyWork.prototype._parseData = function(response) {
+StateOfParties.prototype._parseData = function(response) {
   console.log('_parseData!');
 
   var self = this;
@@ -72,7 +72,7 @@ TheyWork.prototype._parseData = function(response) {
   this._drawData();
 }
 
-TheyWork.prototype._drawData = function() {
+StateOfParties.prototype._drawData = function() {
   console.log('_drawData!');
 
   var dataset = this.parties;
