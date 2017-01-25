@@ -40,6 +40,8 @@ TheyWork.prototype._getData = function() {
 }
 
 TheyWork.prototype._parseData = function(response) {
+  console.log('_parseData!');
+
   var self = this;
   var parties = [];
 
@@ -71,6 +73,8 @@ TheyWork.prototype._parseData = function(response) {
 }
 
 TheyWork.prototype._drawData = function() {
+  console.log('_drawData!');
+
   var dataset = this.parties;
   var w = 500;
   var h = 350;
@@ -99,8 +103,7 @@ TheyWork.prototype._drawData = function() {
     .attr('class', function(d) {
       return d.name
               .toLowerCase()
-              .split(' ')
-              .join('');
+              .replace(/[^a-z]/g, '');
     });
 
   svg
