@@ -5,7 +5,5 @@ document.addEventListener('DOMContentLoaded', function() {
   } else if ($('body').hasClass('findConstituency')) {
     var findConstituency = new FindConstituency();
     findConstituency.init();
-
-    // console.log(findConstituency);
   }
 }, false);

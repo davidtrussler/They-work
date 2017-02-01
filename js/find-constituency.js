@@ -12,7 +12,25 @@ var FindConstituency = function() {
 FindConstituency.prototype.init = function() {
   console.log('init!');
 
-  // this._getData();
+  this.getData = new GetData();
+  this._setUpFormSubmit();
+
+  console.log(this.getData);
+}
+
+FindConstituency.prototype._setUpFormSubmit = function() {
+  console.log('_setUpFormSubmit');
+
+  var _this = this;
+
+  $('#js_postcode-search').submit(function(e) {
+    e.preventDefault();
+
+    console.log('submit!');
+    console.log($('#js_postcode').val());
+
+    _this.getData.getConstituencyFromPostcode($('#js_postcode').val());
+  });
 }
 
 /*
