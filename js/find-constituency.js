@@ -1,19 +1,21 @@
 /*
- * Displays number of MPs in each party
+ * Allows user to choose a constituency
+ * Shows this on map
  */
 
 'use strict';
 
-var StateOfParties = function() {
-  this.parties = [];
+var FindConstituency = function() {
+  // this.parties = [];
 };
 
-StateOfParties.prototype.init = function() {
+FindConstituency.prototype.init = function() {
   console.log('init!');
 
-  this._getData();
+  // this._getData();
 }
 
+/*
 StateOfParties.prototype._getData = function() {
   console.log('_getData!');
 
@@ -38,7 +40,9 @@ StateOfParties.prototype._getData = function() {
     }
   });
 }
+*/
 
+/*
 StateOfParties.prototype._parseData = function(response) {
   console.log('_parseData!');
 
@@ -71,7 +75,9 @@ StateOfParties.prototype._parseData = function(response) {
 
   this._drawData();
 }
+*/
 
+/*
 StateOfParties.prototype._drawData = function() {
   console.log('_drawData!');
 
@@ -124,3 +130,4 @@ StateOfParties.prototype._drawData = function() {
     .attr('font-family', 'sans-serif')
     .attr('font-size', '1em');
 }
+*/

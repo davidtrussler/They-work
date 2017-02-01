@@ -3,7 +3,9 @@ document.addEventListener('DOMContentLoaded', function() {
     var stateOfParties = new StateOfParties();
     stateOfParties.init();
   } else if ($('body').hasClass('findConstituency')) {
-    var stateOfParties = new StateOfParties();
+    var findConstituency = new FindConstituency();
     findConstituency.init();
+
+    // console.log(findConstituency);
   }
 }, false);
