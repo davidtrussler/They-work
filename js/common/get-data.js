@@ -5,7 +5,7 @@ GetData = function() {
 };
 
 GetData.prototype._getData = function(url) {
-  console.log('getData!');
+  console.log('_getData!');
 
   // var self = this;
 
@@ -27,15 +27,28 @@ GetData.prototype._getData = function(url) {
       console.log('textStatus: ', textStatus);
       console.log('errorThrown: ', errorThrown);
     }
+  }).done(function() {
+    console.log('ajax done!'); 
+
+    return response; 
   });
 }
 
-GetData.prototype.getConstituencyFromPostcode = function(postcode) {
-  console.log('getConstituencyFromPostcode!');
+GetData.prototype.getConstituency = function(name, postcode) {
+  console.log('getConstituency!');
   console.log(postcode);
 
-  var postcode = postcode.replace(/[^a-z|0-9]/g, '');
-  var url = 'https://www.theyworkforyou.com/api/getConstituency?key=' + this.key + '&postcode=' + postcode;
+  if (postcode) {
+    // var postcode = postcode.replace(/[^a-z|0-9]/g, '');
+    // var url = 'https://www.theyworkforyou.com/api/getConstituency?key=' + this.key + '&postcode=' + postcode;
+    var url_postcode = 'http://localhost/They-work/src/getConstituency_response.json';
 
-  this._getData(url);
+    // console.log(this); 
+
+    var response = this._getData(url_postcode);
+
+    console.log('response: ', response); 
+  } else {
+    console.log('no postcode given!'); 
+  }
 }

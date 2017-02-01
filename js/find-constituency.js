@@ -12,10 +12,10 @@ var FindConstituency = function() {
 FindConstituency.prototype.init = function() {
   console.log('init!');
 
-  this.getData = new GetData();
+  // this.getData = new GetData();
   this._setUpFormSubmit();
 
-  console.log(this.getData);
+  // console.log(this.getData);
 }
 
 FindConstituency.prototype._setUpFormSubmit = function() {
@@ -29,9 +29,119 @@ FindConstituency.prototype._setUpFormSubmit = function() {
     console.log('submit!');
     console.log($('#js_postcode').val());
 
-    _this.getData.getConstituencyFromPostcode($('#js_postcode').val());
+    // _this.getData.getConstituency(null, $('#js_postcode').val());
+    _this._getConstituencyData($('#js_postcode').val());
   });
 }
+
+FindConstituency.prototype._getConstituencyData = function(postcode) {
+  console.log('_getConstituencyData!');
+
+  // var self = this;
+
+  var key = 'AvizXSBnS6eXAP8bu7EvtKpk';
+  var url = 'https://www.theyworkforyou.com/api/getConstituency?key=' + key + '&postcode=' + postcode;
+  // var url = 'http://localhost/They-work/src/getConstituency_response.json';
+
+  $.ajax({
+    url: url,
+    success: function(response) {
+      console.log('success!');
+      console.log(response);
+
+      // return response; 
+      // self._parseData(response);
+
+      var name = response.name; // .replace(' ', '+'); 
+      url = 'https://www.theyworkforyou.com/api/getGeometry?key=' + key + '&name=' + name;
+
+      console.log(url); 
+
+      $.ajax({
+        url: url,
+        success: function(response) {
+          console.log('success!');
+          console.log(response);
+
+          // return response; 
+          // self._parseData(response);
+        },
+        error: function(jqXHR, textStatus, errorThrown) {
+          console.log('error!');
+          console.log('jqXHR: ', jqXHR);
+          console.log('textStatus: ', textStatus);
+          console.log('errorThrown: ', errorThrown);
+        }
+      });  
+    },
+    error: function(jqXHR, textStatus, errorThrown) {
+      console.log('error!');
+      console.log('jqXHR: ', jqXHR);
+      console.log('textStatus: ', textStatus);
+      console.log('errorThrown: ', errorThrown);
+    }
+  });  
+
+  /*
+  if (postcode) {
+    var postcode = postcode.replace(/[^a-z|0-9]/g, '');
+    var url = 'https://www.theyworkforyou.com/api/getConstituency?key=' + this.key + '&postcode=' + postcode;
+    // var url = 'http://localhost/They-work/src/getConstituency_response.json';
+
+    var response = this._getData(url); 
+  } else if (name) {
+    var url = 'http://localhost/They-work/src/getConstituency_response.json';
+
+    this._getData(url); 
+  } else {
+    console.log('no postcode given!'); 
+  }
+  */
+}
+
+/*
+FindConstituency.prototype._getData() = function(url) {
+  console.log('_getData!'); 
+
+  $.ajax({
+    url: url,
+    success: function(response) {
+      console.log('success!');
+      console.log(response);
+
+      return response; 
+      // self._parseData(response);
+    },
+    error: function(jqXHR, textStatus, errorThrown) {
+      console.log('error!');
+      console.log('jqXHR: ', jqXHR);
+      console.log('textStatus: ', textStatus);
+      console.log('errorThrown: ', errorThrown);
+    }
+  });  
+}
+*/
+
+/*
+GetData.prototype.getConstituency = function(name, postcode) {
+  console.log('getConstituency!');
+  console.log(postcode);
+
+  if (postcode) {
+    // var postcode = postcode.replace(/[^a-z|0-9]/g, '');
+    // var url = 'https://www.theyworkforyou.com/api/getConstituency?key=' + this.key + '&postcode=' + postcode;
+    var url_postcode = 'http://localhost/They-work/src/getConstituency_response.json';
+
+    // console.log(this); 
+
+    var response = this._getData(url_postcode);
+
+    console.log('response: ', response); 
+  } else {
+    console.log('no postcode given!'); 
+  }
+}
+*/
 
 /*
 StateOfParties.prototype._getData = function() {
