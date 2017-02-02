@@ -30,21 +30,26 @@ FindConstituency.prototype._setUpFormSubmit = function() {
 FindConstituency.prototype._getConstituencyData = function(postcode) {
   console.log('_getConstituencyData!');
 
-  var key = 'AvizXSBnS6eXAP8bu7EvtKpk';
-  var url = 'https://www.theyworkforyou.com/api/getConstituency?key=' + key + '&postcode=' + postcode;
-  // var url = 'http://localhost/They-work/src/getConstituency_response.json';
+  var _this = this;
+
+  // var key = 'AvizXSBnS6eXAP8bu7EvtKpk';
+  // var url = 'https://www.theyworkforyou.com/api/getConstituency?key=' + key + '&postcode=' + postcode;
+  var url = 'http://localhost/They-work/src/getConstituency_response.json';
 
   $.ajax({
     url: url,
     success: function(response) {
-      var name = $.parseJSON(response).name.replace(' ', '+'); 
-      url = 'https://www.theyworkforyou.com/api/getGeometry?key=' + key + '&name=' + name;
+      // var name = $.parseJSON(response).name.replace(' ', '+'); 
+      // url = 'https://www.theyworkforyou.com/api/getGeometry?key=' + key + '&name=' + name;
+      url = 'http://localhost/They-work/src/getGeometry_response.json';
 
       $.ajax({
         url: url,
         success: function(response) {
-          console.log('success!');
-          console.log(response);
+          // console.log('success!');
+          // console.log(response);
+
+          _this._drawData(response); 
         },
         error: function(jqXHR, textStatus, errorThrown) {
           console.log('error!');
@@ -61,4 +66,10 @@ FindConstituency.prototype._getConstituencyData = function(postcode) {
       console.log('errorThrown: ', errorThrown);
     }
   });  
+}
+
+
+FindConstituency.prototype._drawData = function(response) {
+  console.log('_drawData!'); 
+  console.log(response); 
 }
